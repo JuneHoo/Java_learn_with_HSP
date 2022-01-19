@@ -1,6 +1,6 @@
 package com.edu.String_;
 
-public class StringBuffer {
+public class StringBuffer01 {
     public static void main(String[] args) {
         // StringBuilder的直接父类 是 AbstractStringBuilder
         // 在父类中 AbstractStringBuilder 有属性 char[] value, 不是final、
