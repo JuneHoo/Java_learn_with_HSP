@@ -1,5 +1,6 @@
 package com.edu.arrays_;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.SortedMap;
 
@@ -7,13 +8,27 @@ public class ArraysSortCustom {
     public static void main(String[] args) {
         int[] arr = {1, -1, 8, 0, 20};
         bubble01(arr);
-        System.out.println(arr);
+        System.out.println(Arrays.toString(arr));
+        // 传入的comparator参数是内部类实现
+        bubble02(arr, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+//                return 0;
+                int i1 = (Integer) o1;
+                int i2 = (Integer) o2;
+                return i1 - i2;
+            }
+        });
+        System.out.println("定制排序后结果");
+
+        System.out.println(Arrays.toString(arr));
     }
+
 
     public static void bubble01(int[] arr) {
         int temp = 0;
         for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1; j++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
@@ -24,8 +39,19 @@ public class ArraysSortCustom {
     }
 
     public static void bubble02(int[] arr, Comparator comparator) {
-
+//        public int compare(Object o1, Object o2;)
+        int temp = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (comparator.compare(arr[j], arr[j + 1]) > 0) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
+
 }
 
 
